@@ -25,6 +25,10 @@ class MyAdapter(val context : Activity, val productArrayList : List<Product>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = productArrayList[position]
         holder.title.text = currentItem.title
+        holder.dis.text = currentItem.description
+        holder.price.text = currentItem.price.toString()
+        holder.rating.text = currentItem.rating.toString()
+
         // image view , how to show image in image view if the image is in form of url, 3rd Party Library
         // Picasso
         Picasso.get().load(currentItem.thumbnail).into(holder.image);
@@ -33,10 +37,17 @@ class MyAdapter(val context : Activity, val productArrayList : List<Product>) :
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         var title : TextView
         var image : ShapeableImageView
+        var dis : TextView
+        var price : TextView
+        var rating : TextView
 
         init {
             title = itemView.findViewById(R.id.productTitle)
+            dis = itemView.findViewById(R.id.productDis)
+            price = itemView.findViewById(R.id.productPrice)
+            rating = itemView.findViewById(R.id.productRating)
             image = itemView.findViewById(R.id.productImage)
+
         }
     }
 
